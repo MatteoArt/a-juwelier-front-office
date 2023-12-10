@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav v-if="$route.name != 'not-found'" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <router-link :to="{ name: 'home' }" class="navbar-brand">
                 A Juwelier
