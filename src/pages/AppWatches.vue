@@ -31,9 +31,9 @@ export default {
 <template>
     <h1 class="text-center">Watches</h1>
 
-    <div class="container">
-        <div class="row">
-            <div v-for="watch in watches" class="col-md-3">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap">
+            <div v-for="watch in watches" class="my-flex-item">
                 <WatchCard :watchData="watch"></WatchCard>
             </div>
         </div>
@@ -42,4 +42,8 @@ export default {
 
 <style scoped>
 
+.my-flex-item {
+    flex-basis: calc((100% / 5) - (7px * 2));
+    margin: 0 7px;
+}
 </style>
