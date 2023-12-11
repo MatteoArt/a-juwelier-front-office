@@ -14,6 +14,7 @@ export default {
                     //se mi viene ritornato un oggetto non nullo
                     if (response.data.result) {
                         this.singleWatch = response.data.result
+                        console.log(this.singleWatch)
                     } else { //se non è stato trovato nulla
                         this.$router.push({ name: 'not-found' })
                     }
@@ -32,9 +33,16 @@ export default {
             <div class="col-sm-6"></div>
             <div class="col-sm-6">
                 <h1>{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
-                <h3>Price: € 
-                    {{ singleWatch.price ? (singleWatch.price).toFixed(2).replace('.', ',') : singleWatch.price }}
+                <h3>{{ singleWatch.ref }}</h3>
+                <h3>
+                    {{ singleWatch.price ? (singleWatch.price).toFixed(2).replace('.', ',') : singleWatch.price }} €
                 </h3>
+                <h4 class="mt-3">Characteristics</h4>
+                <table>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
