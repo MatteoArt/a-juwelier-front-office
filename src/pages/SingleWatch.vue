@@ -6,7 +6,8 @@ export default {
         return {
             singleWatch: {},
             characteristicsArr: [],
-            arrImages: []
+            arrImages: [],
+            labelsArr: []
         }
     },
     methods: {
@@ -19,6 +20,7 @@ export default {
                         console.log(this.singleWatch)
                         this.getArrCharacteristics();
                         this.imgStrToArr();
+                        this.getLabels();
                     } else { //se non è stato trovato nulla
                         this.$router.push({ name: 'not-found' })
                     }
@@ -42,6 +44,14 @@ export default {
                 this.arrImages.push(images[i]);
             }
             //console.log(this.arrImages)
+        },
+        getLabels() {
+            var labels = JSON.parse(this.singleWatch.labels)
+            
+            for (let i = 0; i < labels.length; i++) {
+                this.labelsArr.push(labels[i]);
+            }
+            console.log(this.labelsArr)
         }
     },
     mounted() {
@@ -87,13 +97,15 @@ export default {
                 <h3>
                     {{ singleWatch.price ? (singleWatch.price).toFixed(2).replace('.', ',') : singleWatch.price }} €
                 </h3>
-                <h4 class="mt-3">Characteristics</h4>
-                <div class="my-scroll-container border rounded">
+                <h4 class="mt-3 d-inline-block bg-dark text-light" style="padding: 14px 18px;">Characteristics</h4>
+                <div class="my-scroll-container border">
                     <table class="table">
                         <tbody>
-                            <tr v-for="charac in characteristicsArr">
-                                <td><i class="fa-regular fa-circle fa-sm"></i></td>
-                                <td>
+                            <tr v-for="(charac, i) in characteristicsArr">
+                                <td class="fw-semibold" :class="i == characteristicsArr.length-1 ? 'last-cells' : ''">
+                                    {{ labelsArr[i] }}
+                                </td>
+                                <td :class="i == characteristicsArr.length-1 ? 'last-cells' : ''">
                                     {{ charac[0].toUpperCase() + charac.slice(1) }}
                                 </td>
                             </tr>
@@ -109,7 +121,7 @@ export default {
 
 <style scoped>
 .my-scroll-container {
-    height: 170px;
+    height: 245px;
     overflow: auto;
 }
 .carousel .carousel-indicators button {
@@ -123,5 +135,18 @@ export default {
   object-position: center;
   overflow: hidden;
   height: 65vh;
+}
+
+table.table {
+    position: sticky;
+    top: 0;
+}
+
+table.table td {
+    padding: 18px;
+}
+
+table.table td.last-cells {
+    border-bottom: 0;
 }
 </style>
