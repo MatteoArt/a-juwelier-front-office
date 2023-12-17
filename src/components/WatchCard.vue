@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         getImagePath(img) {
-            return new URL(`../assets/${img}`, import.meta.url).href;
+            return `http://127.0.0.1:8000/storage/${img}`;
         },
         convertToArr() {
             var images = JSON.parse(this.watchData.images);
@@ -34,7 +34,7 @@ export default {
     <div class="card h-100 border-0">
         <router-link :to="{ name: 'single-watch', params: { slug: watchData.slug } }">
             <div class="my-img-container">
-                <img :src="arrImages[0]" class="card-img-top" :alt="watchData.model">
+                <img :src="getImagePath(arrImages[0])" class="card-img-top" :alt="watchData.model">
             </div>
         </router-link>
 

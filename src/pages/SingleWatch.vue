@@ -52,6 +52,9 @@ export default {
                 this.labelsArr.push(labels[i]);
             }
             console.log(this.labelsArr)
+        },
+        getImagePath(img) {
+            return `http://127.0.0.1:8000/storage/${img}`;
         }
     },
     mounted() {
@@ -76,7 +79,7 @@ export default {
                     <div class="carousel-inner">
                         <div v-for="(image, i) in arrImages" class="carousel-item" data-bs-interval="10000"
                         :class="i==0 ? 'active' : ''">
-                            <img :src="image" class="d-block w-100" :alt="`img_slider${i+1}`">
+                            <img :src="getImagePath(image)" class="d-block w-100" :alt="`img_slider${i+1}`">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselWatches"
