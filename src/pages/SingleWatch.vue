@@ -27,15 +27,15 @@ export default {
                 })
         },
         getArrCharacteristics() {
-            //array contente tutte le caratteristiche dell'orologio a partire dalla stringa che viene ritornata
-            let rawArr = this.singleWatch.characteristics.split(',');
+            //array contenente tutte le caratteristiche dell'orologio a partire dal json che viene ritornato
+            let rawArr = JSON.parse(this.singleWatch.characteristics);
 
             //pulisce ogni stringa dell'array dagli spazi bianchi all'inizio e alla fine
             for (let i = 0; i < rawArr.length; i++) {
                 this.characteristicsArr.push(rawArr[i].trim());
             }
 
-            //console.log(this.characteristicsArr)
+            console.log(this.characteristicsArr)
         },
         imgStrToArr() {
             var images = JSON.parse(this.singleWatch.images);
