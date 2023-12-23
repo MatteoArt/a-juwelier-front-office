@@ -14,11 +14,14 @@ export default {
     },
     methods: {
         fetchData() {
-            axios.get('http://127.0.0.1:8000/api/watches')
+            axios.get('http://127.0.0.1:8000/api/watches', {
+                params: { searchWatch: this.searchForm }
+            })
             .then((response) => {
                 let ris = response.data.results;
 
                 this.watches = ris;
+                console.log(this.searchForm)
             })
         }
     },
@@ -33,7 +36,7 @@ export default {
     <h1 class="text-center">Watches</h1>
 
     <div class="container-fluid">
-        <form action="" class="w-50 my-5">
+        <form action="" class="w-50 my-5" @submit.prevent="fetchData">
             <div class="input-group">
                 <input type="text" class="form-control rounded-start-4" placeholder="Search for brand/model/ref"
                 v-model="searchForm">
