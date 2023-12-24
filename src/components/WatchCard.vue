@@ -9,22 +9,14 @@ export default {
     },
     data() {
         return {
-            arrImages: []
+
         }
     },
     methods: {
-        getImagePath(img) {
-            return `http://127.0.0.1:8000/storage/${img}`;
-        },
-        convertToArr() {
-            var images = JSON.parse(this.watchData.images);
-            for (let i = 0; i < images.length; i++) {
-                this.arrImages.push(images[i]);
-            }
+        getImagePath() {
+            const images = JSON.parse(this.watchData.images);
+            return `http://127.0.0.1:8000/storage/${images[0]}`;
         }
-    },
-    mounted() {
-        this.convertToArr();
     }
 }
 
@@ -34,7 +26,7 @@ export default {
     <div class="card h-100 border-0">
         <router-link :to="{ name: 'single-watch', params: { slug: watchData.slug } }">
             <div class="my-img-container">
-                <img :src="getImagePath(arrImages[0])" class="card-img-top" :alt="watchData.model">
+                <img :src="getImagePath()" class="card-img-top" :alt="watchData.model">
             </div>
         </router-link>
 

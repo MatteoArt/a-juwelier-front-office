@@ -10,6 +10,7 @@ export default {
         return {
             watches: [],
             searchForm: '',
+            loadingData: false, //indica se i dati sono stati scaricati dal server
         }
     },
     methods: {
@@ -21,8 +22,12 @@ export default {
                 let ris = response.data.results;
 
                 this.watches = ris;
-                console.log(this.searchForm)
+                console.log(this.watches);
             })
+            .finally(() => {
+                this.loadingData = true;
+            });
+
         }
     },
     mounted() {
@@ -45,7 +50,11 @@ export default {
                 </button>
             </div>
         </form>
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap" :class="watches.length === 0 && loadingData ? 'justify-content-center' : ''">
+            <div v-if="watches.length === 0 && loadingData" style="width: 140px;">
+                <img src="../assets/not found.png" class="img-fluid" alt="not found">
+                <p class="fw-semibold mt-2">Sorry, your search returned no results</p>
+            </div>
             <div v-for="watch in watches" class="my-flex-item">
                 <WatchCard :watchData="watch"></WatchCard>
             </div>
