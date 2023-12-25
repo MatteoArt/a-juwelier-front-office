@@ -27,7 +27,7 @@ export default {
     <nav v-if="$route.name != 'not-found'" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <router-link :to="{ name: 'home' }" class="navbar-brand">
-                A Juwelier
+                <img src="../assets/a-juwelier-logo-nav.png" style="width: 60px;" alt="a-juwelier-logo">
             </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
