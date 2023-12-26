@@ -27,7 +27,7 @@ export default {
     <nav v-if="$route.name != 'not-found'" class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <router-link :to="{ name: 'home' }" class="navbar-brand">
-                <img src="../assets/a-juwelier-logo-nav.png" style="width: 60px;" alt="a-juwelier-logo">
+                <img src="../assets/a-juwelier.png" style="width: 140px;" alt="a-juwelier-logo">
             </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ export default {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li v-for="link in navLinks" class="nav-item">
-                        <router-link :to="{ name: link.link_name }" class="nav-link"
+                        <router-link :to="{ name: link.link_name }" class="nav-link my-text fs-5"
                         :class="$route.name == link.link_name ? 'active' : ''">
                             {{ link.link }}
                         </router-link>
@@ -49,4 +49,7 @@ export default {
 
 <style scoped>
 
+.my-text {
+    font-family: 'Courier New', Courier, monospace;
+}
 </style>

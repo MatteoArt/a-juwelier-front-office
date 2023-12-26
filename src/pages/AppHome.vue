@@ -7,17 +7,26 @@ export default {
 </script>
 
 <template>
-    <h1 class="text-center">Home</h1>
-    <div class="my-img-logo-container">
-        <img src="../assets/a-juwelier.png" class="img-fluid" alt="a juwelier">
+    <div class="container-fluid my-jumbo">
     </div>
-    
+    <h1 class="text-center my-title">Welcome</h1>
+
+    <div class="text-center my-3">
+        <router-link :to="{ name: 'watches' }" class="btn btn-outline-info btn-lg">
+            Discover <i class="fa-solid fa-arrow-pointer"></i>
+        </router-link>
+    </div>
 </template>
 
 <style scoped>
 
-.my-img-logo-container {
-    width: 400px;
-    margin: auto;
+.my-title {
+    font-family: 'Courier New', Courier, monospace;
+}
+.my-jumbo {
+    background-image: url('../assets/background.webp');
+    background-size: cover;
+    background-position-y: center;
+    height: 450px;
 }
 </style>
