@@ -28,6 +28,10 @@ export default {
                 this.loadingData = true;
             });
 
+        },
+        resetInput() {
+            this.searchForm = '';
+            this.fetchData();
         }
     },
     mounted() {
@@ -42,9 +46,12 @@ export default {
 
     <div class="container-fluid">
         <form action="" class="w-50 my-5" @submit.prevent="fetchData">
-            <div class="input-group">
-                <input type="text" class="form-control rounded-start-4" placeholder="Search for brand/model/ref"
+            <div class="input-group position-relative">
+                <input type="text" class="form-control rounded-start-4" id="form-search" placeholder="Search for brand/model/ref"
                 v-model="searchForm">
+                <button type="button" class="reset-button text-body-tertiary" @click="resetInput">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
                 <button type="submit" class="btn btn-outline-dark rounded-end-4 px-3">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -71,5 +78,18 @@ export default {
 .form-control:focus {
     border-color: black;
     box-shadow:  0 0 0 0.15rem rgba(25, 25, 25, 0.63);
+}
+.reset-button {
+    background-color: transparent;
+    position: absolute;
+    top: 15%;
+    right: 8%;
+    border: 0;
+    z-index: 10;
+    display: none;
+}
+#form-search:hover + .reset-button,.reset-button:hover,
+#form-search:focus + .reset-button {
+    display: block;
 }
 </style>
