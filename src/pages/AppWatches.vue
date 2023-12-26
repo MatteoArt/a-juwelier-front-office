@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="text-center">Watches</h1>
+    <h1 class="text-center my-title">Watches</h1>
 
     <div class="container-fluid">
         <form action="" class="w-50 my-5" @submit.prevent="fetchData">
@@ -71,6 +71,9 @@ export default {
 
 <style scoped>
 
+.my-title {
+    font-family: 'Courier New', Courier, monospace;
+}
 .my-flex-item {
     flex-basis: calc((100% / 5) - (7px * 2));
     margin: 0 7px;
