@@ -47,7 +47,7 @@ export default {
     <div class="container-fluid">
         <form action="" class="w-50 my-5" @submit.prevent="fetchData">
             <div class="input-group position-relative">
-                <input type="text" class="form-control rounded-start-4" id="form-search" placeholder="Search for brand/model/ref"
+                <input type="text" class="form-control rounded-start-4 my-title" id="form-search" placeholder="Search for brand/model/ref"
                 v-model="searchForm">
                 <button type="button" class="reset-button text-body-tertiary" @click="resetInput">
                     <i class="fa-solid fa-xmark"></i>
