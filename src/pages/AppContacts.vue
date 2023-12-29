@@ -7,12 +7,12 @@ export default {
       //oggetto che conterrà l'input dell'utente
       userData: {
         name: '',
-        mail: '',
+        email: '',
         message: ''
       },
       errors: { //oggetto contenente i messaggi di errore che eventualmente verranno mostrati
         nameError: '',
-        mailError: '',
+        emailError: '',
         messageError: '',
       }
     }
@@ -21,7 +21,17 @@ export default {
     onFormSubmit() {
       this.validatedData();
 
-      axios.post()
+      if (this.errors.nameError=='' && this.errors.emailError=='' && this.errors.messageError=='') {
+
+        axios.post('http://127.0.0.1:8000/api/contacts', this.userData,
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }).then((response) => {
+          console.log(response);
+        });
+      } else { //se fallisce la validazione fermo la funzione
+        return;
+      }
     },
     validatedData() {
       if (!this.userData.name) {
@@ -32,6 +42,24 @@ export default {
         this.errors.nameError = 'The name must contain at least 3 letters';
       } else {
         this.errors.nameError = '';
+      }
+
+      if (!this.userData.email) {
+        this.errors.emailError = 'The email field is required';
+      } else if (!isNaN(this.userData.email)) {
+        this.errors.emailError = 'Please enter a valid email';
+      } else if (this.userData.email.length < 7) {
+        this.errors.emailError = 'The email must contain at least 7 characters';
+      } else {
+        this.errors.emailError = '';
+      }
+
+      if (this.userData.message && this.userData.message.length < 30) {
+        this.errors.messageError = 'The message must contain at least 30 characters';
+      } else if (this.userData.message && !isNaN(this.userData.message)) {
+        this.errors.messageError = 'Please enter a valid message';
+      } else {
+        this.errors.messageError = '';
       }
     }
   }
@@ -77,21 +105,33 @@ export default {
       </div>
       <div class="col-sm-6">
         <p class="fs-5 my-title">For any information do not hesitate to contact us</p>
-        <form action="" @submit.prevent="onFormSubmit"  class="my-title">
-          <div class="form-floating mb-3">
+        <form action="" @submit.prevent="onFormSubmit" class="my-title">
+          <div class="form-floating" :class="errors.nameError ? 'is-invalid' : ''"
+          v-bind:class="!errors.nameError ? 'mb-3' : ''">
             <input type="text" class="form-control" id="userName" placeholder="name"
-            v-model="userData.name">
+            v-model="userData.name" :class="errors.nameError ? 'is-invalid' : ''">
             <label for="userName">Name</label>
           </div>
-          <div class="form-floating mb-3">
+          <div v-if="errors.nameError" class="invalid-feedback mb-3">
+            {{ errors.nameError }}
+          </div>
+          <div class="form-floating" :class="errors.emailError ? 'is-invalid' : ''"
+          v-bind:class="!errors.emailError ? 'mb-3' : ''">
             <input type="email" class="form-control" id="userMail" placeholder="email"
-            v-model="userData.mail">
+            v-model="userData.email" :class="errors.emailError ? 'is-invalid' : ''">
             <label for="userMail">Email address</label>
           </div>
-          <div class="form-floating mb-3">
+          <div v-if="errors.emailError" class="invalid-feedback mb-3">
+            {{ errors.emailError }}
+          </div>
+          <div class="form-floating" :class="errors.messageError ? 'is-invalid' : ''"
+          v-bind:class="!errors.messageError ? 'mb-3' : ''">
             <textarea class="form-control" placeholder="Leave a message here" id="userMessage" style="height: 190px;"
-            v-model="userData.message"></textarea>
+            v-model="userData.message" :class="errors.messageError ? 'is-invalid' : ''"></textarea>
             <label for="userMessage">Message</label>
+          </div>
+          <div v-if="errors.messageError" class="invalid-feedback mb-3">
+            {{ errors.messageError }}
           </div>
           <button type="submit" class="btn btn-outline-success">Send</button>
         </form>
