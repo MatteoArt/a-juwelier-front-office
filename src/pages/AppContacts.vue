@@ -8,7 +8,7 @@ export default {
       userData: {
         name: '',
         email: '',
-        message: ''
+        message: '',
       },
       errors: { //oggetto contenente i messaggi di errore che eventualmente verranno mostrati
         nameError: '',
@@ -16,6 +16,7 @@ export default {
         messageError: '',
       },
       messageSuccess: null,
+      loading: false, //caricamento
     }
   },
   methods: {
@@ -23,13 +24,16 @@ export default {
       this.validatedData();
 
       if (this.errors.nameError == '' && this.errors.emailError == '' && this.errors.messageError == '') {
-
+        this.loading = true;
         axios.post('http://127.0.0.1:8000/api/contacts', this.userData,
           {
             headers: { 'Content-Type': 'application/json' }
           }).then((response) => {
             console.log(response.data.response);
             this.messageSuccess = response.data.response;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       } else { //se fallisce la validazione fermo la funzione
         return;
@@ -137,6 +141,9 @@ export default {
           </div>
           <button type="submit" class="btn btn-outline-success">Send</button>
         </form>
+        <div v-if="loading" class="spinner-border text-success" role="status">
+          <span class="visually-hidden"></span>
+        </div>
         <div v-if="messageSuccess" class="alert alert-success" role="alert">
           <span class="d-inline-block me-2"><i class="fa-solid fa-circle-check"></i></span> {{ messageSuccess }}
         </div>

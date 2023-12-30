@@ -13,6 +13,10 @@ export default {
                     link_name: 'watches'
                 },
                 {
+                    link: 'Sell',
+                    link_name: 'sell'
+                },
+                {
                     link: 'Contacts',
                     link_name: 'contacts'
                 }
