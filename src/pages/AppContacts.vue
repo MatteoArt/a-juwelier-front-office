@@ -14,21 +14,23 @@ export default {
         nameError: '',
         emailError: '',
         messageError: '',
-      }
+      },
+      messageSuccess: null,
     }
   },
   methods: {
     onFormSubmit() {
       this.validatedData();
 
-      if (this.errors.nameError=='' && this.errors.emailError=='' && this.errors.messageError=='') {
+      if (this.errors.nameError == '' && this.errors.emailError == '' && this.errors.messageError == '') {
 
         axios.post('http://127.0.0.1:8000/api/contacts', this.userData,
-        {
-          headers: { 'Content-Type': 'application/json' }
-        }).then((response) => {
-          console.log(response);
-        });
+          {
+            headers: { 'Content-Type': 'application/json' }
+          }).then((response) => {
+            console.log(response.data.response);
+            this.messageSuccess = response.data.response;
+          });
       } else { //se fallisce la validazione fermo la funzione
         return;
       }
@@ -37,7 +39,7 @@ export default {
       if (!this.userData.name) {
         this.errors.nameError = 'The name field is required';
       } else if (!isNaN(this.userData.name) || (/[0-9]/.test(this.userData.name))) { //se è un numero o contiene un numero
-        this.errors.nameError = 'Please enter a valid name'; 
+        this.errors.nameError = 'Please enter a valid name';
       } else if (this.userData.name.length < 3) {
         this.errors.nameError = 'The name must contain at least 3 letters';
       } else {
@@ -105,29 +107,29 @@ export default {
       </div>
       <div class="col-sm-6">
         <p class="fs-5 my-title">For any information do not hesitate to contact us</p>
-        <form action="" @submit.prevent="onFormSubmit" class="my-title">
+        <form action="" @submit.prevent="onFormSubmit" class="my-title mb-3">
           <div class="form-floating" :class="errors.nameError ? 'is-invalid' : ''"
-          v-bind:class="!errors.nameError ? 'mb-3' : ''">
-            <input type="text" class="form-control" id="userName" placeholder="name"
-            v-model="userData.name" :class="errors.nameError ? 'is-invalid' : ''">
+            v-bind:class="!errors.nameError ? 'mb-3' : ''">
+            <input type="text" class="form-control" id="userName" placeholder="name" v-model="userData.name"
+              :class="errors.nameError ? 'is-invalid' : ''">
             <label for="userName">Name</label>
           </div>
           <div v-if="errors.nameError" class="invalid-feedback mb-3">
             {{ errors.nameError }}
           </div>
           <div class="form-floating" :class="errors.emailError ? 'is-invalid' : ''"
-          v-bind:class="!errors.emailError ? 'mb-3' : ''">
-            <input type="email" class="form-control" id="userMail" placeholder="email"
-            v-model="userData.email" :class="errors.emailError ? 'is-invalid' : ''">
+            v-bind:class="!errors.emailError ? 'mb-3' : ''">
+            <input type="email" class="form-control" id="userMail" placeholder="email" v-model="userData.email"
+              :class="errors.emailError ? 'is-invalid' : ''">
             <label for="userMail">Email address</label>
           </div>
           <div v-if="errors.emailError" class="invalid-feedback mb-3">
             {{ errors.emailError }}
           </div>
           <div class="form-floating" :class="errors.messageError ? 'is-invalid' : ''"
-          v-bind:class="!errors.messageError ? 'mb-3' : ''">
+            v-bind:class="!errors.messageError ? 'mb-3' : ''">
             <textarea class="form-control" placeholder="Leave a message here" id="userMessage" style="height: 190px;"
-            v-model="userData.message" :class="errors.messageError ? 'is-invalid' : ''"></textarea>
+              v-model="userData.message" :class="errors.messageError ? 'is-invalid' : ''"></textarea>
             <label for="userMessage">Message</label>
           </div>
           <div v-if="errors.messageError" class="invalid-feedback mb-3">
@@ -135,6 +137,9 @@ export default {
           </div>
           <button type="submit" class="btn btn-outline-success">Send</button>
         </form>
+        <div v-if="messageSuccess" class="alert alert-success" role="alert">
+          <span class="d-inline-block me-2"><i class="fa-solid fa-circle-check"></i></span> {{ messageSuccess }}
+        </div>
       </div>
     </div>
 
