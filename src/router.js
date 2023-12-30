@@ -6,6 +6,7 @@ import AppWatches from './pages/AppWatches.vue'
 import AppContacts from './pages/AppContacts.vue'
 import SingleWatch from './pages/SingleWatch.vue'
 import NotFoundPage from './pages/NotFoundPage.vue'
+import AppSell from './pages/AppSell.vue'
 
 const routes = [
     {
@@ -27,6 +28,11 @@ const routes = [
         path: '/contacts',
         name: 'contacts',
         component: AppContacts
+    },
+    {
+        path: '/sell',
+        name: 'sell',
+        component: AppSell
     },
     { //assicurati che il not found sia sempre alla fine dell'array routes perchè se nessuna rotta è stata catturata in quelle definite allora qualsiasi eccezione carica not found
         path: '/:pathMatch(.*)*',
