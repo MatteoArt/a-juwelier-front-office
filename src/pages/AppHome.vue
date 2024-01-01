@@ -10,7 +10,7 @@ export default {
     <div class="container-fluid my-jumbo">
     </div>
     <div class="wrapper">
-        <h1 class="text-center my-title">Welcome</h1>
+        <h1 class="text-center my-title fw-semibold">Welcome</h1>
 
         <div class="text-center">
             <img src="../assets/a-juwelier.jpg" class="img-fluid" alt="a juwelier">

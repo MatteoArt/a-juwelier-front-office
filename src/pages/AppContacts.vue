@@ -74,7 +74,7 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-center my-title">Contacts</h1>
+  <h1 class="text-center my-title fw-semibold">Contacts</h1>
   <div class="container mt-4 mb-3">
     <div class="row">
       <div class="col-sm-6 px-4">
