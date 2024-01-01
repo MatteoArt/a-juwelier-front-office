@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="text-center my-title">Watches</h1>
+    <h1 class="text-center my-title fw-semibold">Watches</h1>
 
     <div class="container-fluid">
         <form action="" class="w-50 my-5" @submit.prevent="fetchData">
