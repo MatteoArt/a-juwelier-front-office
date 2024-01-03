@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 
 export default {
     data() {
@@ -72,7 +73,7 @@ export default {
                 phone: '',
                 city: '',
                 address: '',
-                informations: [],
+                informations: ['', '', '', '', '', '', '', '', '', '', '', ''],
                 photo1: null,
                 photo2: null,
                 photo3: null,
@@ -99,7 +100,34 @@ export default {
         onFormSubmit() {
             this.validatedData();
 
-            let validation = true;
+            var validation = true;
+            for (let key in this.errorMessages) {
+                if (key == 'informationsError') {
+                    for (let i = 0; i < this.errorMessages[key].length; i++) {
+                        if (this.errorMessages[key][i]) {
+                            validation = false;
+                        }
+                    } 
+                } else {
+                    if (this.errorMessages[key]) {
+                        validation = false;
+                    }
+                }
+            } //se non ci sono errori la validazione rimane a true e parte l'invio dei dati al server
+
+            if (validation) {
+                console.log(this.formData)
+
+                axios.post('http://127.0.0.1:8000/api/proposals', this.formData,
+                {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                }).then((response) => {
+                    console.log(response);
+                })
+            } else {
+                return;
+            }
+
         },
         onPhoto1Change(event) {
             //catturo l'evento di caricamento del file e accedo all'array dei file
@@ -302,7 +330,7 @@ export default {
             <div class="row g-3 mt-4">
                 <div class="col-md-4">
                     <label for="photo1" class="form-label fw-semibold">Photo 1 of your watch</label>
-                    <input class="form-control" type="file" id="photo1" @change="onPhoto1Change"
+                    <input class="form-control" type="file" id="photo1" accept="image/*" @change="onPhoto1Change"
                         :class="errorMessages.photo1Error ? 'is-invalid ' : ''">
                     <div v-if="errorMessages.photo1Error" class="invalid-feedback">
                         {{ errorMessages.photo1Error }}
@@ -310,7 +338,7 @@ export default {
                 </div>
                 <div class="col-md-4">
                     <label for="photo2" class="form-label fw-semibold">Photo 2 of your watch</label>
-                    <input class="form-control" type="file" id="photo2" @change="onPhoto2Change"
+                    <input class="form-control" type="file" id="photo2" accept="image/*" @change="onPhoto2Change"
                         :class="errorMessages.photo2Error ? 'is-invalid' : ''">
                     <div v-if="errorMessages.photo2Error" class="invalid-feedback">
                         {{ errorMessages.photo2Error }}
@@ -318,7 +346,7 @@ export default {
                 </div>
                 <div class="col-md-4">
                     <label for="photo3" class="form-label fw-semibold">Photo 3 of your watch</label>
-                    <input class="form-control" type="file" id="photo3" @change="onPhoto3Change"
+                    <input class="form-control" type="file" id="photo3" accept="image/*" @change="onPhoto3Change"
                         :class="errorMessages.photo3Error ? 'is-invalid' : ''">
                     <div v-if="errorMessages.photo3Error" class="invalid-feedback">
                         {{ errorMessages.photo3Error }}
