@@ -98,8 +98,8 @@ export default {
     methods: {
         onFormSubmit() {
             this.validatedData();
-            console.log(this.formData)
-            console.log(this.errorMessages)
+
+            let validation = true;
         },
         onPhoto1Change(event) {
             //catturo l'evento di caricamento del file e accedo all'array dei file
@@ -195,7 +195,25 @@ export default {
                 }
             }
 
-            //qui validazione foto
+            if (!this.formData.photo1) {
+                this.errorMessages.photo1Error = 'The field is required';
+            } else if (!this.formData.photo1.type.startsWith('image/')) {
+                this.errorMessages.photo1Error = 'Sorry, you can only upload image files';
+            } else {
+                this.errorMessages.photo1Error = '';
+            }
+
+            if (this.formData.photo2 && !this.formData.photo2.type.startsWith('image/')) {
+                this.errorMessages.photo2Error = 'Sorry, you can only upload image files';
+            } else {
+                this.errorMessages.photo2Error = '';
+            }
+
+            if (this.formData.photo3 && !this.formData.photo3.type.startsWith('image/')) {
+                this.errorMessages.photo3Error = 'Sorry, you can only upload image files';
+            } else {
+                this.errorMessages.photo3Error = '';
+            }
 
             if (!this.formData.price) {
                 this.errorMessages.priceError = 'The field is required';
@@ -284,15 +302,27 @@ export default {
             <div class="row g-3 mt-4">
                 <div class="col-md-4">
                     <label for="photo1" class="form-label fw-semibold">Photo 1 of your watch</label>
-                    <input class="form-control" type="file" id="photo1" @change="onPhoto1Change">
+                    <input class="form-control" type="file" id="photo1" @change="onPhoto1Change"
+                        :class="errorMessages.photo1Error ? 'is-invalid ' : ''">
+                    <div v-if="errorMessages.photo1Error" class="invalid-feedback">
+                        {{ errorMessages.photo1Error }}
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <label for="photo2" class="form-label fw-semibold">Photo 2 of your watch</label>
-                    <input class="form-control" type="file" id="photo2" @change="onPhoto2Change">
+                    <input class="form-control" type="file" id="photo2" @change="onPhoto2Change"
+                        :class="errorMessages.photo2Error ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.photo2Error" class="invalid-feedback">
+                        {{ errorMessages.photo2Error }}
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <label for="photo3" class="form-label fw-semibold">Photo 3 of your watch</label>
-                    <input class="form-control" type="file" id="photo3" @change="onPhoto3Change">
+                    <input class="form-control" type="file" id="photo3" @change="onPhoto3Change"
+                        :class="errorMessages.photo3Error ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.photo3Error" class="invalid-feedback">
+                        {{ errorMessages.photo3Error }}
+                    </div>
                 </div>
             </div>
         </fieldset>
@@ -307,7 +337,7 @@ export default {
         <div class="col-md-6 mt-2">
             <label for="inputNote" class="form-label fw-semibold">Note</label>
             <textarea class="form-control" id="inputNote" style="height: 150px;" v-model="formData.note"
-            :class="errorMessages.noteError ? 'is-invalid' : ''"></textarea>
+                :class="errorMessages.noteError ? 'is-invalid' : ''"></textarea>
             <div v-if="errorMessages.noteError" class="invalid-feedback">
                 {{ errorMessages.noteError }}
             </div>
