@@ -385,13 +385,13 @@ export default {
         <div v-if="loading" class="spinner-border text-secondary" role="status">
             <span class="visually-hidden"></span>
         </div>
-        <div v-if="messageSuccess" class="alert alert-success w-50 d-flex align-items-center" role="alert">
+        <div v-if="messageSuccess" class="alert alert-success w-50 d-flex align-items-center gap-4" role="alert">
             <div><i class="fa-solid fa-circle-check"></i></div>
             <div>{{ messageSuccess }}</div>
         </div>
-        <div v-if="errorResponse" class="alert alert-danger w-50" role="alert">
-            <span class="d-inline-block me-2"><i class="fa-solid fa-triangle-exclamation"></i></span> Error in processing
-            request: {{ errorResponse }}
+        <div v-if="errorResponse" class="alert alert-danger w-50 d-flex align-items-center gap-4" role="alert">
+            <div><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>Error in processing request: {{ errorResponse }}</div>
         </div>
     </form>
 </template>
