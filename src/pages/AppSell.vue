@@ -93,11 +93,16 @@ export default {
                 photo3Error: '',
                 priceError: '',
                 noteError: ''
-            }
+            },
+            errorResponse: null,
+            messageSuccess: null,
+            loading: false,
         }
     },
     methods: {
         onFormSubmit() {
+            this.messageSuccess = null;
+            this.errorResponse = null;
             this.validatedData();
 
             var validation = true;
@@ -107,7 +112,7 @@ export default {
                         if (this.errorMessages[key][i]) {
                             validation = false;
                         }
-                    } 
+                    }
                 } else {
                     if (this.errorMessages[key]) {
                         validation = false;
@@ -116,14 +121,18 @@ export default {
             } //se non ci sono errori la validazione rimane a true e parte l'invio dei dati al server
 
             if (validation) {
-                console.log(this.formData)
+                this.loading = true;
 
                 axios.post('http://127.0.0.1:8000/api/proposals', this.formData,
-                {
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                }).then((response) => {
-                    console.log(response);
-                })
+                    {
+                        headers: { 'Content-Type': 'multipart/form-data' }
+                    }).then((response) => {
+                        this.messageSuccess = response.data.response;
+                    }).catch((e) => {
+                        this.errorResponse = e.message;
+                    }).finally(() => {
+                        this.loading = false;
+                    })
             } else {
                 return;
             }
@@ -265,9 +274,9 @@ export default {
 </script>
 
 <template>
-    <h1 class="text-center fw-semibold mb-4">Sell your watch</h1>
+    <h1 class="text-center fw-semibold mb-4 my-title">Sell your watch</h1>
 
-    <form class="w-75 m-auto mb-3" @submit.prevent="onFormSubmit">
+    <form class="w-75 m-auto mb-3 my-title" @submit.prevent="onFormSubmit">
         <fieldset class="row g-3 mb-3">
             <legend class="col-12 m-0 fw-semibold">Personal informations</legend>
             <div class="col-md-6 mt-1">
@@ -370,12 +379,25 @@ export default {
                 {{ errorMessages.noteError }}
             </div>
         </div>
-        <button type="submit" class="btn btn-outline-success mt-3">Submit</button>
+        <div class="mt-3 mb-3">
+            <button type="submit" class="btn btn-outline-success">Submit</button>
+        </div>
+        <div v-if="loading" class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+        <div v-if="messageSuccess" class="alert alert-success w-50 d-flex align-items-center" role="alert">
+            <div><i class="fa-solid fa-circle-check"></i></div>
+            <div>{{ messageSuccess }}</div>
+        </div>
+        <div v-if="errorResponse" class="alert alert-danger w-50" role="alert">
+            <span class="d-inline-block me-2"><i class="fa-solid fa-triangle-exclamation"></i></span> Error in processing
+            request: {{ errorResponse }}
+        </div>
     </form>
 </template>
 
 <style scoped>
-* {
+.my-title {
     font-family: 'Courier New', Courier, monospace;
 }
 </style>

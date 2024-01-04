@@ -29,7 +29,6 @@ export default {
           {
             headers: { 'Content-Type': 'application/json' }
           }).then((response) => {
-            console.log(response.data.response);
             this.messageSuccess = response.data.response;
           })
           .finally(() => {
@@ -141,7 +140,7 @@ export default {
           </div>
           <button type="submit" class="btn btn-outline-success">Send</button>
         </form>
-        <div v-if="loading" class="spinner-border text-success" role="status">
+        <div v-if="loading" class="spinner-border text-secondary" role="status">
           <span class="visually-hidden"></span>
         </div>
         <div v-if="messageSuccess" class="alert alert-success" role="alert">
