@@ -15,12 +15,15 @@ export default {
         emailError: '',
         messageError: '',
       },
+      errorResponse: null,
       messageSuccess: null,
       loading: false, //caricamento
     }
   },
   methods: {
     onFormSubmit() {
+      this.messageSuccess = null;
+      this.errorResponse = null;
       this.validatedData();
 
       if (this.errors.nameError == '' && this.errors.emailError == '' && this.errors.messageError == '') {
@@ -30,6 +33,8 @@ export default {
             headers: { 'Content-Type': 'application/json' }
           }).then((response) => {
             this.messageSuccess = response.data.response;
+          }).catch((e) => {
+            this.errorResponse = e.message;
           })
           .finally(() => {
             this.loading = false;
@@ -145,6 +150,10 @@ export default {
         </div>
         <div v-if="messageSuccess" class="alert alert-success" role="alert">
           <span class="d-inline-block me-2"><i class="fa-solid fa-circle-check"></i></span> {{ messageSuccess }}
+        </div>
+        <div v-if="errorResponse" class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+          <div><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div>Error in processing request: {{ errorResponse }}</div>
         </div>
       </div>
     </div>
