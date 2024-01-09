@@ -34,9 +34,9 @@ export default {
 }
 
 .my-jumbo {
-    background-image: url('../assets/background.webp');
+    background-image: url('../assets/background.jpeg');
     background-size: cover;
-    background-position-y: center;
+    background-position: center;
     height: 450px;
 }
 </style>

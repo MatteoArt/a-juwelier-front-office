@@ -18,15 +18,15 @@ export default {
             axios.get('http://127.0.0.1:8000/api/watches', {
                 params: { searchWatch: this.searchForm }
             })
-            .then((response) => {
-                let ris = response.data.results;
+                .then((response) => {
+                    let ris = response.data.results;
 
-                this.watches = ris;
-                console.log(this.watches);
-            })
-            .finally(() => {
-                this.loadingData = true;
-            });
+                    this.watches = ris;
+                    console.log(this.watches);
+                })
+                .finally(() => {
+                    this.loadingData = true;
+                });
 
         },
         resetInput() {
@@ -47,8 +47,8 @@ export default {
     <div class="container-fluid">
         <form action="" class="w-50 my-5" @submit.prevent="fetchData">
             <div class="input-group position-relative">
-                <input type="text" class="form-control rounded-start-4 my-title" id="form-search" placeholder="Search for brand/model/ref"
-                v-model="searchForm">
+                <input type="text" class="form-control rounded-start-4 my-title" id="form-search"
+                    placeholder="Search for brand/model/ref" v-model="searchForm">
                 <button type="button" class="reset-button text-body-tertiary" @click="resetInput">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -70,18 +70,20 @@ export default {
 </template>
 
 <style scoped>
-
 .my-title {
     font-family: 'Courier New', Courier, monospace;
 }
+
 .my-flex-item {
-    flex-basis: calc((100% / 5) - (7px * 2));
+    flex-basis: calc((100%) - (7px * 2));
     margin: 0 7px;
 }
+
 .form-control:focus {
     border-color: black;
-    box-shadow:  0 0 0 0.15rem rgba(25, 25, 25, 0.63);
+    box-shadow: 0 0 0 0.15rem rgba(25, 25, 25, 0.63);
 }
+
 .reset-button {
     background-color: transparent;
     position: absolute;
@@ -91,8 +93,38 @@ export default {
     z-index: 10;
     display: none;
 }
-#form-search:hover + .reset-button,.reset-button:hover,
-#form-search:focus + .reset-button {
+
+#form-search:hover+.reset-button,
+.reset-button:hover,
+#form-search:focus+.reset-button {
     display: block;
 }
-</style>
+
+@media screen and (min-width: 375px) {
+    .my-flex-item {
+        flex-basis: calc((100% / 2) - (7px * 2));
+        margin: 0 7px;
+        max-width: 252px;
+        overflow: hidden;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .my-flex-item {
+        flex-basis: calc((100% / 2) - (7px * 2));
+        margin: 0 7px;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .my-flex-item {
+        flex-basis: calc((100% / 3) - (7px * 2));
+        margin: 0 7px;
+    }
+}
+@media screen and (min-width: 992px) {
+    .my-flex-item {
+        flex-basis: calc((100% / 5) - (7px * 2));
+        margin: 0 7px;
+    }
+}</style>
