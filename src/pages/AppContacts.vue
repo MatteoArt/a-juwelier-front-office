@@ -78,43 +78,43 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-center my-title fw-semibold">Contacts</h1>
-  <div class="container mt-4 mb-3">
+  <h1 class="text-sm-center my-padding my-title fw-semibold">Contacts</h1>
+  <div class="container-lg mt-4 mb-3">
     <div class="row">
-      <div class="col-sm-6 px-4">
+      <div class="col-md-6 px-md-4">
         <div class="d-flex align-items-center gap-2">
           <span>
             <i class="fa-brands fa-instagram fa-xl" title="Instagram"></i>
-            <span class="d-inline-block ms-2">Instagram</span>
+            <span class="d-inline-block ms-2 my-title">Instagram</span>
           </span>
           <a href="https://www.instagram.com/ajuwelierluxury/?igsh=ZGNjOWZkYTE3MQ%3D%3D&utm_source=qr" target="_blank"
-            class="my-link">
+            class="my-link my-title">
             @ajuwelierluxury
           </a>
         </div>
         <div class="d-flex align-items-center gap-2 mt-3">
           <span>
             <i class="fa-brands fa-tiktok fa-xl" title="TikTok"></i>
-            <span class="d-inline-block ms-2">TikTok</span>
+            <span class="d-inline-block ms-2 my-title">TikTok</span>
           </span>
-          <a href="https://www.tiktok.com/@a.juwelier?_t=8iXKFNjt4fh&_r=1" target="_blank" class="my-link">
+          <a href="https://www.tiktok.com/@a.juwelier?_t=8iXKFNjt4fh&_r=1" target="_blank" class="my-link my-title">
             @a.juwelier
           </a>
         </div>
         <div class="d-flex align-items-center gap-2 mt-3">
           <span>
             <i class="fa-brands fa-x-twitter fa-xl" title="X"></i>
-            <span class="d-inline-block ms-2">X</span>
+            <span class="d-inline-block ms-2 my-title">X</span>
           </span>
-          <a href="https://x.com/ajuwelier59583?s=11" target="_blank" class="my-link">
+          <a href="https://x.com/ajuwelier59583?s=11" target="_blank" class="my-link my-title">
             @ajuwelier59583
           </a>
         </div>
 
 
       </div>
-      <div class="col-sm-6">
-        <p class="fs-5 my-title">For any information do not hesitate to contact us</p>
+      <div class="col-md-6">
+        <p class="contact-text my-title mt-3 mt-md-0">For any information do not hesitate to contact us</p>
         <form action="" @submit.prevent="onFormSubmit" class="my-title mb-3">
           <div class="form-floating" :class="errors.nameError ? 'is-invalid' : ''"
             v-bind:class="!errors.nameError ? 'mb-3' : ''">
@@ -143,7 +143,7 @@ export default {
           <div v-if="errors.messageError" class="invalid-feedback mb-3">
             {{ errors.messageError }}
           </div>
-          <button type="submit" class="btn btn-outline-success">Send</button>
+          <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>
         <div v-if="loading" class="spinner-border text-secondary" role="status">
           <span class="visually-hidden"></span>
@@ -166,7 +166,26 @@ export default {
   text-decoration: none;
 }
 
+.my-padding {
+  padding-left: 12px;
+}
+.contact-text {
+  font-size: 1rem;
+}
+
 .my-title {
   font-family: 'Courier New', Courier, monospace;
+}
+
+@media screen and (min-width: 576px) {
+  .my-padding {
+    padding-left: 0;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .contact-text {
+    font-size: 1.25rem;
+  }
 }
 </style>
