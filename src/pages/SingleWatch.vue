@@ -94,9 +94,9 @@ export default {
                     </button>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <h1>{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
-                <h3>{{ singleWatch.ref }}</h3>
+            <div class="col-sm-6 my-title">
+                <h1 class="fw-semibold">{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
+                <h3>Ref. {{ singleWatch.ref }}</h3>
                 <h3>
                     {{ singleWatch.price ? (singleWatch.price).toFixed(2).replace('.', ',') : singleWatch.price }} €
                 </h3>
@@ -126,6 +126,11 @@ export default {
 .my-scroll-container {
     height: 245px;
     overflow: auto;
+    margin-bottom: 30px;
+}
+
+.my-title {
+    font-family: 'Courier New', Courier, monospace;
 }
 .carousel .carousel-indicators button {
    width: 10px;

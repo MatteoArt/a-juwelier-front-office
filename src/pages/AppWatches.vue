@@ -45,14 +45,14 @@ export default {
     <h1 class="text-center my-title fw-semibold">Watches</h1>
 
     <div class="container-fluid">
-        <form action="" class="w-50 my-5" @submit.prevent="fetchData">
+        <form action="" class="my-5 my-form" @submit.prevent="fetchData">
             <div class="input-group position-relative">
-                <input type="text" class="form-control rounded-start-4 my-title" id="form-search"
+                <input type="text" class="form-control rounded-start-4 my-title my-input" id="form-search"
                     placeholder="Search for brand/model/ref" v-model="searchForm">
                 <button type="button" class="reset-button text-body-tertiary" @click="resetInput">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
-                <button type="submit" class="btn btn-outline-dark rounded-end-4 px-3">
+                <button type="submit" class="btn btn-outline-dark rounded-end-4 px-sm-3 my-button">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -74,6 +74,19 @@ export default {
     font-family: 'Courier New', Courier, monospace;
 }
 
+.reset-button {
+    background-color: transparent;
+    position: absolute;
+    top: 15%;
+    border: 0;
+    z-index: 10;
+    display: none;
+}
+
+.my-form {
+    width: 99%;
+}
+
 .my-flex-item {
     flex-basis: calc((100%) - (7px * 2));
     margin: 0 7px;
@@ -84,20 +97,35 @@ export default {
     box-shadow: 0 0 0 0.15rem rgba(25, 25, 25, 0.63);
 }
 
-.reset-button {
-    background-color: transparent;
-    position: absolute;
-    top: 15%;
-    right: 8%;
-    border: 0;
-    z-index: 10;
-    display: none;
-}
+
 
 #form-search:hover+.reset-button,
 .reset-button:hover,
 #form-search:focus+.reset-button {
     display: block;
+}
+
+@media screen and (max-width: 375px) {
+    .my-input {
+        flex-basis: 100%;
+        border-top-right-radius: 1rem !important;
+        border-bottom-right-radius: 1rem !important;
+    }
+
+    .my-button {
+        border-radius: 0.7rem !important;
+        margin-top: 7px;
+    }
+
+    .reset-button {
+        background-color: transparent;
+        position: absolute;
+        top: 7%;
+        right: 3%;
+        border: 0;
+        z-index: 10;
+        display: none;
+    }
 }
 
 @media screen and (min-width: 375px) {
@@ -107,12 +135,20 @@ export default {
         max-width: 252px;
         overflow: hidden;
     }
+
+    .reset-button {
+        right: 13%;
+    }
 }
 
 @media screen and (min-width: 500px) {
     .my-flex-item {
         flex-basis: calc((100% / 2) - (7px * 2));
         margin: 0 7px;
+    }
+
+    .reset-button {
+        right: 11%;
     }
 }
 
@@ -121,10 +157,61 @@ export default {
         flex-basis: calc((100% / 3) - (7px * 2));
         margin: 0 7px;
     }
+
+    .reset-button {
+        right: 10%;
+    }
 }
+
+@media screen and (min-width: 700px) {
+    .reset-button {
+        right: 8%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .my-flex-item {
+        flex-basis: calc((100% / 4) - (7px * 2));
+        margin: 0 7px;
+    }
+
+
+}
+
+@media screen and (min-width: 815px) {
+    .my-form {
+        width: 75%;
+    }
+
+    .reset-button {
+        right: 9%;
+    }
+}
+
 @media screen and (min-width: 992px) {
     .my-flex-item {
         flex-basis: calc((100% / 5) - (7px * 2));
         margin: 0 7px;
     }
-}</style>
+
+    .reset-button {
+        right: 12%;
+    }
+
+    .my-form {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .reset-button {
+        right: 11%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .reset-button {
+        right: 10%;
+    }
+}
+</style>
