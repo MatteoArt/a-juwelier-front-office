@@ -274,130 +274,139 @@ export default {
 </script>
 
 <template>
-    <h1 class="text-center fw-semibold mb-4 my-title">Sell your watch</h1>
+    <div class="container-fluid">
+        <h1 class="text-md-center fw-semibold mb-4 my-title">Sell your watch</h1>
 
-    <form class="w-75 m-auto mb-3 my-title" @submit.prevent="onFormSubmit">
-        <fieldset class="row g-3 mb-3">
-            <legend class="col-12 m-0 fw-semibold">Personal informations</legend>
-            <div class="col-md-6 mt-1">
-                <label for="inputName" class="form-label fw-semibold">Full Name</label>
-                <input type="text" class="form-control" id="inputName" v-model="formData.fullname"
-                    :class="errorMessages.fullnameError ? 'is-invalid' : ''">
-                <div v-if="errorMessages.fullnameError" class="invalid-feedback">
-                    {{ errorMessages.fullnameError }}
+        <form class="mb-3 my-title my-form" @submit.prevent="onFormSubmit">
+            <fieldset class="row g-3 mb-3">
+                <legend class="col-12 m-0 fw-semibold">Personal informations</legend>
+                <div class="col-md-6 mt-1">
+                    <label for="inputName" class="form-label fw-semibold">Full Name</label>
+                    <input type="text" class="form-control" id="inputName" v-model="formData.fullname"
+                        :class="errorMessages.fullnameError ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.fullnameError" class="invalid-feedback">
+                        {{ errorMessages.fullnameError }}
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 mt-1">
-                <label for="inputEmail" class="form-label fw-semibold">E-mail Address</label>
-                <input type="email" class="form-control" id="inputEmail" v-model="formData.email"
-                    :class="errorMessages.emailError ? 'is-invalid' : ''">
-                <div v-if="errorMessages.emailError" class="invalid-feedback">
-                    {{ errorMessages.emailError }}
+                <div class="col-md-6 mt-1">
+                    <label for="inputEmail" class="form-label fw-semibold">E-mail Address</label>
+                    <input type="email" class="form-control" id="inputEmail" v-model="formData.email"
+                        :class="errorMessages.emailError ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.emailError" class="invalid-feedback">
+                        {{ errorMessages.emailError }}
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <label for="inputPhone" class="form-label fw-semibold">Phone Number</label>
-                <input type="tel" class="form-control" id="inputPhone" v-model="formData.phone"
-                    :class="errorMessages.phoneError ? 'is-invalid' : ''">
-                <div v-if="errorMessages.phoneError" class="invalid-feedback">
-                    {{ errorMessages.phoneError }}
+                <div class="col-md-4">
+                    <label for="inputPhone" class="form-label fw-semibold">Phone Number</label>
+                    <input type="tel" class="form-control" id="inputPhone" v-model="formData.phone"
+                        :class="errorMessages.phoneError ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.phoneError" class="invalid-feedback">
+                        {{ errorMessages.phoneError }}
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <label for="inputCity" class="form-label fw-semibold">City</label>
-                <input type="text" class="form-control" id="inputCity" v-model="formData.city"
-                    :class="errorMessages.cityError ? 'is-invalid' : ''">
-                <div v-if="errorMessages.cityError" class="invalid-feedback">
-                    {{ errorMessages.cityError }}
+                <div class="col-md-4">
+                    <label for="inputCity" class="form-label fw-semibold">City</label>
+                    <input type="text" class="form-control" id="inputCity" v-model="formData.city"
+                        :class="errorMessages.cityError ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.cityError" class="invalid-feedback">
+                        {{ errorMessages.cityError }}
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <label for="inputAddress" class="form-label fw-semibold">Address</label>
-                <input type="text" class="form-control" id="inputAddress" v-model="formData.address"
-                    :class="errorMessages.addressError ? 'is-invalid' : ''">
-                <div v-if="errorMessages.addressError" class="invalid-feedback">
-                    {{ errorMessages.addressError }}
+                <div class="col-md-4">
+                    <label for="inputAddress" class="form-label fw-semibold">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" v-model="formData.address"
+                        :class="errorMessages.addressError ? 'is-invalid' : ''">
+                    <div v-if="errorMessages.addressError" class="invalid-feedback">
+                        {{ errorMessages.addressError }}
+                    </div>
                 </div>
-            </div>
-        </fieldset>
+            </fieldset>
 
-        <fieldset class="row g-3 mb-4">
-            <legend class="col-12 fw-semibold">Information about the watch</legend>
-            <div v-for="(watch, i) in watchesFieldList" class="col-md-4">
-                <label :for="`inputInformationWatch${i}`" class="form-label fw-semibold">{{ watch.labelName }}</label>
-                <input v-if="!watch.options" type="text" class="form-control" :id="`inputInformationWatch${i}`"
-                    v-model="formData.informations[i]" :class="errorMessages.informationsError[i] ? 'is-invalid' : ''">
-                <select v-else class="form-select" :id="`inputInformationWatch${i}`" v-model="formData.informations[i]"
-                    :class="errorMessages.informationsError[i] ? 'is-invalid' : ''">
-                    <option value="" selected>Select</option>
-                    <option v-for="option in watch.options" :value="option">{{ option }}</option>
-                </select>
-                <div v-if="errorMessages.informationsError[i]" class="invalid-feedback">
-                    {{ errorMessages.informationsError[i] }}
-                </div>
-            </div>
-            <div class="row g-3 mt-4">
-                <div class="col-md-4">
-                    <label for="photo1" class="form-label fw-semibold">Photo 1 of your watch</label>
-                    <input class="form-control" type="file" id="photo1" accept="image/*" @change="onPhoto1Change"
-                        :class="errorMessages.photo1Error ? 'is-invalid ' : ''">
-                    <div v-if="errorMessages.photo1Error" class="invalid-feedback">
-                        {{ errorMessages.photo1Error }}
+            <fieldset class="row g-3 mb-4">
+                <legend class="col-12 fw-semibold">Information about the watch</legend>
+                <div v-for="(watch, i) in watchesFieldList" class="col-md-4">
+                    <label :for="`inputInformationWatch${i}`" class="form-label fw-semibold">{{ watch.labelName }}</label>
+                    <input v-if="!watch.options" type="text" class="form-control" :id="`inputInformationWatch${i}`"
+                        v-model="formData.informations[i]" :class="errorMessages.informationsError[i] ? 'is-invalid' : ''">
+                    <select v-else class="form-select" :id="`inputInformationWatch${i}`" v-model="formData.informations[i]"
+                        :class="errorMessages.informationsError[i] ? 'is-invalid' : ''">
+                        <option value="" selected>Select</option>
+                        <option v-for="option in watch.options" :value="option">{{ option }}</option>
+                    </select>
+                    <div v-if="errorMessages.informationsError[i]" class="invalid-feedback">
+                        {{ errorMessages.informationsError[i] }}
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="photo2" class="form-label fw-semibold">Photo 2 of your watch</label>
-                    <input class="form-control" type="file" id="photo2" accept="image/*" @change="onPhoto2Change"
-                        :class="errorMessages.photo2Error ? 'is-invalid' : ''">
-                    <div v-if="errorMessages.photo2Error" class="invalid-feedback">
-                        {{ errorMessages.photo2Error }}
+                <div class="row g-3 mt-4">
+                    <div class="col-md-4">
+                        <label for="photo1" class="form-label fw-semibold">Photo 1 of your watch</label>
+                        <input class="form-control" type="file" id="photo1" accept="image/*" @change="onPhoto1Change"
+                            :class="errorMessages.photo1Error ? 'is-invalid ' : ''">
+                        <div v-if="errorMessages.photo1Error" class="invalid-feedback">
+                            {{ errorMessages.photo1Error }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="photo2" class="form-label fw-semibold">Photo 2 of your watch</label>
+                        <input class="form-control" type="file" id="photo2" accept="image/*" @change="onPhoto2Change"
+                            :class="errorMessages.photo2Error ? 'is-invalid' : ''">
+                        <div v-if="errorMessages.photo2Error" class="invalid-feedback">
+                            {{ errorMessages.photo2Error }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="photo3" class="form-label fw-semibold">Photo 3 of your watch</label>
+                        <input class="form-control" type="file" id="photo3" accept="image/*" @change="onPhoto3Change"
+                            :class="errorMessages.photo3Error ? 'is-invalid' : ''">
+                        <div v-if="errorMessages.photo3Error" class="invalid-feedback">
+                            {{ errorMessages.photo3Error }}
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label for="photo3" class="form-label fw-semibold">Photo 3 of your watch</label>
-                    <input class="form-control" type="file" id="photo3" accept="image/*" @change="onPhoto3Change"
-                        :class="errorMessages.photo3Error ? 'is-invalid' : ''">
-                    <div v-if="errorMessages.photo3Error" class="invalid-feedback">
-                        {{ errorMessages.photo3Error }}
-                    </div>
+            </fieldset>
+            <div class="col-md-6">
+                <label for="inputPrice" class="form-label fw-semibold">Your price</label>
+                <input type="text" class="form-control" id="inputPrice" v-model="formData.price"
+                    :class="errorMessages.priceError ? 'is-invalid' : ''">
+                <div v-if="errorMessages.priceError" class="invalid-feedback">
+                    {{ errorMessages.priceError }}
                 </div>
             </div>
-        </fieldset>
-        <div class="col-md-6">
-            <label for="inputPrice" class="form-label fw-semibold">Your price</label>
-            <input type="text" class="form-control" id="inputPrice" v-model="formData.price"
-                :class="errorMessages.priceError ? 'is-invalid' : ''">
-            <div v-if="errorMessages.priceError" class="invalid-feedback">
-                {{ errorMessages.priceError }}
+            <div class="col-md-6 mt-2">
+                <label for="inputNote" class="form-label fw-semibold">Note</label>
+                <textarea class="form-control" id="inputNote" style="height: 150px;" v-model="formData.note"
+                    :class="errorMessages.noteError ? 'is-invalid' : ''"></textarea>
+                <div v-if="errorMessages.noteError" class="invalid-feedback">
+                    {{ errorMessages.noteError }}
+                </div>
             </div>
-        </div>
-        <div class="col-md-6 mt-2">
-            <label for="inputNote" class="form-label fw-semibold">Note</label>
-            <textarea class="form-control" id="inputNote" style="height: 150px;" v-model="formData.note"
-                :class="errorMessages.noteError ? 'is-invalid' : ''"></textarea>
-            <div v-if="errorMessages.noteError" class="invalid-feedback">
-                {{ errorMessages.noteError }}
+            <div class="mt-3 mb-3">
+                <button type="submit" class="btn btn-outline-success">Submit</button>
             </div>
-        </div>
-        <div class="mt-3 mb-3">
-            <button type="submit" class="btn btn-outline-success">Submit</button>
-        </div>
-        <div v-if="loading" class="spinner-border text-secondary" role="status">
-            <span class="visually-hidden"></span>
-        </div>
-        <div v-if="messageSuccess" class="alert alert-success w-50 d-flex align-items-center gap-4" role="alert">
-            <div><i class="fa-solid fa-circle-check"></i></div>
-            <div>{{ messageSuccess }}</div>
-        </div>
-        <div v-if="errorResponse" class="alert alert-danger w-50 d-flex align-items-center gap-4" role="alert">
-            <div><i class="fa-solid fa-triangle-exclamation"></i></div>
-            <div>Error in processing request: {{ errorResponse }}</div>
-        </div>
-    </form>
+            <div v-if="loading" class="spinner-border text-secondary" role="status">
+                <span class="visually-hidden"></span>
+            </div>
+            <div v-if="messageSuccess" class="alert alert-success w-50 d-flex align-items-center gap-4" role="alert">
+                <div><i class="fa-solid fa-circle-check"></i></div>
+                <div>{{ messageSuccess }}</div>
+            </div>
+            <div v-if="errorResponse" class="alert alert-danger w-50 d-flex align-items-center gap-4" role="alert">
+                <div><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div>Error in processing request: {{ errorResponse }}</div>
+            </div>
+        </form>
+    </div>
 </template>
 
 <style scoped>
 .my-title {
     font-family: 'Courier New', Courier, monospace;
+}
+
+@media screen and (min-width: 768px) {
+    .my-form {
+        width: 75%;
+        margin: auto;
+    }
 }
 </style>
