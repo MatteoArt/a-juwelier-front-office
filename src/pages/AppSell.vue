@@ -274,7 +274,7 @@ export default {
 </script>
 
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid pb-3">
         <h1 class="text-md-center fw-semibold mb-4 my-title">Sell your watch</h1>
 
         <form class="mb-3 my-title my-form" @submit.prevent="onFormSubmit">
