@@ -66,7 +66,7 @@ export default {
 <template>
     <div v-if="singleWatch.brand" class="container-fluid mt-4">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
                 <div id="carouselWatches" class="carousel carousel-dark slide">
                     <div class="carousel-indicators">
                         <span v-for="(image, i) in arrImages">
@@ -94,7 +94,7 @@ export default {
                     </button>
                 </div>
             </div>
-            <div class="col-sm-6 my-title">
+            <div class="col-md-6 my-title">
                 <h1 class="fw-semibold">{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
                 <h3>Ref. {{ singleWatch.ref }}</h3>
                 <h3>
