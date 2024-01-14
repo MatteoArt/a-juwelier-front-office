@@ -1,7 +1,10 @@
 <script>
+import TheFooter from '../components/TheFooter.vue';
 
 export default {
-
+    components: {
+        TheFooter,
+    }
 }
 
 </script>
@@ -22,6 +25,7 @@ export default {
             </router-link>
         </div>
     </div>
+    <TheFooter></TheFooter>
 </template>
 
 <style scoped>

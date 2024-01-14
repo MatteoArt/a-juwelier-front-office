@@ -1,7 +1,12 @@
 <script>
 import axios from 'axios';
 
+import TheFooter from '../components/TheFooter.vue';
+
 export default {
+  components: {
+    TheFooter,
+  },
   data() {
     return {
       //oggetto che conterrà l'input dell'utente
@@ -159,6 +164,7 @@ export default {
     </div>
 
   </div>
+  <TheFooter></TheFooter>
 </template>
 
 <style scoped>

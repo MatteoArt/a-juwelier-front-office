@@ -1,13 +1,18 @@
 <script>
 import axios from 'axios';
+import TheFooter from '../components/TheFooter.vue';
 
 export default {
+    components: {
+        TheFooter,
+    },
     data() {
         return {
             singleWatch: {},
             characteristicsArr: [],
             arrImages: [],
-            labelsArr: []
+            labelsArr: [],
+            loadingData: false,
         }
     },
     methods: {
@@ -24,7 +29,9 @@ export default {
                     } else { //se non è stato trovato nulla
                         this.$router.push({ name: 'not-found' })
                     }
-                })
+                }).finally(() => {
+                    this.loadingData = true;
+                });
         },
         getArrCharacteristics() {
             //array contenente tutte le caratteristiche dell'orologio a partire dal json che viene ritornato
@@ -120,6 +127,7 @@ export default {
         </div>
 
     </div>
+    <TheFooter v-if="loadingData" class="mt-5"></TheFooter>
 </template>
 
 <style scoped>

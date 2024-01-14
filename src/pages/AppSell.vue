@@ -1,8 +1,13 @@
 <script>
 import axios from 'axios';
 
+import TheFooter from '../components/TheFooter.vue';
+
 export default {
-    data() {
+    components: {
+        TheFooter,
+    }
+    ,data() {
         return {
             watchesFieldList: [
                 {
@@ -396,6 +401,7 @@ export default {
             </div>
         </form>
     </div>
+    <TheFooter></TheFooter>
 </template>
 
 <style scoped>
