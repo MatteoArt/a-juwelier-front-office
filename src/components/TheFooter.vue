@@ -8,7 +8,7 @@ export default {
 
 <template>
 
-    <footer v-if="$route.name != 'not-found'" class="p-3">
+    <footer class="p-3">
         <p class="text-center text-light m-0 my-text my-font-footer">Follow us on</p>
         <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
             <a class="text-light my-font-footer" href="https://www.instagram.com/ajuwelierluxury/?igsh=ZGNjOWZkYTE3MQ%3D%3D&utm_source=qr" target="_blank"><i class="fa-brands fa-instagram"></i></a>

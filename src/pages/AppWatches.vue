@@ -1,10 +1,12 @@
 <script>
 import axios from 'axios';
 import WatchCard from '../components/WatchCard.vue';
+import TheFooter from '../components/TheFooter.vue';
 
 export default {
     components: {
         WatchCard,
+        TheFooter,
     },
     data() {
         return {
@@ -44,7 +46,7 @@ export default {
 <template>
     <h1 class="text-center my-title fw-semibold">Watches</h1>
 
-    <div class="container-fluid mb-3">
+    <div class="container-fluid mb-5">
         <form action="" class="my-5 my-form" @submit.prevent="fetchData">
             <div class="input-group position-relative">
                 <input type="text" class="form-control rounded-start-4 my-title my-input" id="form-search"
@@ -67,6 +69,7 @@ export default {
             </div>
         </div>
     </div>
+    <TheFooter v-if="loadingData"></TheFooter>
 </template>
 
 <style scoped>
