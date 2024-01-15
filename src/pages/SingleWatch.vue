@@ -71,7 +71,7 @@ export default {
 </script>
 
 <template>
-    <div v-if="singleWatch.brand" class="container-fluid mt-4">
+    <div v-if="singleWatch.brand" class="container-fluid mt-4" style="padding-bottom: 2rem;">
         <div class="row">
             <div class="col-md-6">
                 <div id="carouselWatches" class="carousel carousel-dark slide">
