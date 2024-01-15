@@ -84,7 +84,7 @@ export default {
 
 <template>
   <h1 class="text-sm-center my-padding my-title fw-semibold">Contacts</h1>
-  <div class="container-lg mt-4 mb-3">
+  <div class="container-lg mt-4" style="margin-bottom: 230px;">
     <div class="row">
       <div class="col-md-6 px-md-4">
         <div class="d-flex align-items-center gap-2">
