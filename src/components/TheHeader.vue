@@ -47,6 +47,7 @@ export default {
                     </li>
                 </ul>
             </div>
+            <div id="google_translate_element"></div>
         </div>
     </nav>
 </template>
