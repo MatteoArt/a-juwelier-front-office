@@ -103,7 +103,7 @@ export default {
             </div>
             <div class="col-md-6 my-title">
                 <h1 class="fw-semibold">{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
-                <h3>Ref. {{ singleWatch.ref }}</h3>
+                <h3>Reference: {{ singleWatch.ref }}</h3>
                 <h3>
                     {{ singleWatch.price ? (singleWatch.price).toFixed(2).replace('.', ',') : singleWatch.price }} €
                 </h3>
