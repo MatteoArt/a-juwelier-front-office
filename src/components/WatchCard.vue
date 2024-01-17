@@ -37,7 +37,7 @@ export default {
                 <h6 class="card-subtitle mb-2 fw-medium">{{ watchData.model }}</h6>
             </router-link>
             <p class="card-text">
-            <div class="mb-1">REF. {{ watchData.ref }}</div>
+            <div class="mb-1">Reference: {{ watchData.ref }}</div>
             <span class="price">{{ (watchData.price).toFixed(2).replace('.', ',') }} €</span>
             </p>
         </div>
