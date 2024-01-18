@@ -15,7 +15,7 @@ export default {
             <a class="text-light my-font-footer" href="https://www.tiktok.com/@a.juwelier?_t=8iXKFNjt4fh&_r=1" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             <a class="text-light my-font-footer" href="https://x.com/ajuwelier59583?s=11" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
         </div>
-        <p class="text-center text-light m-0 my-text my-font-footer">©2024 A Juwelier | All Rights Reserved</p>
+        <p class="text-center text-light m-0 my-text my-font-footer"><span class="notranslate">©2024 A Juwelier </span> | All Rights Reserved</p>
     </footer>
 
 </template>

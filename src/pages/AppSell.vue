@@ -282,7 +282,7 @@ export default {
     <div class="container-fluid pb-3">
         <h1 class="text-md-center fw-semibold mb-4 my-title">Sell your watch</h1>
 
-        <form class="mb-3 my-title my-form" @submit.prevent="onFormSubmit">
+        <form class="mb-3 my-title my-form pt-2" @submit.prevent="onFormSubmit">
             <fieldset class="row g-3 mb-3">
                 <legend class="col-12 m-0 fw-semibold">Personal informations</legend>
                 <div class="col-md-6 mt-1">

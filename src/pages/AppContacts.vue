@@ -83,14 +83,14 @@ export default {
 </script>
 
 <template>
-  <h1 class="text-sm-center my-padding my-title fw-semibold">Contacts</h1>
+  <h1 class="text-sm-center my-padding my-title fw-semibold mb-3">Contacts</h1>
   <div class="container-lg mt-4" style="margin-bottom: 230px;">
     <div class="row">
       <div class="col-md-6 px-md-4">
         <div class="d-flex align-items-center gap-2">
           <span>
             <i class="fa-brands fa-instagram fa-xl" title="Instagram"></i>
-            <span class="d-inline-block ms-2 my-title">Instagram</span>
+            <span class="d-inline-block ms-2 my-title notranslate">Instagram</span>
           </span>
           <a href="https://www.instagram.com/ajuwelierluxury/?igsh=ZGNjOWZkYTE3MQ%3D%3D&utm_source=qr" target="_blank"
             class="my-link my-title">
@@ -100,7 +100,7 @@ export default {
         <div class="d-flex align-items-center gap-2 mt-3">
           <span>
             <i class="fa-brands fa-tiktok fa-xl" title="TikTok"></i>
-            <span class="d-inline-block ms-2 my-title">TikTok</span>
+            <span class="d-inline-block ms-2 my-title notranslate">TikTok</span>
           </span>
           <a href="https://www.tiktok.com/@a.juwelier?_t=8iXKFNjt4fh&_r=1" target="_blank" class="my-link my-title">
             @a.juwelier
@@ -109,11 +109,19 @@ export default {
         <div class="d-flex align-items-center gap-2 mt-3">
           <span>
             <i class="fa-brands fa-x-twitter fa-xl" title="X"></i>
-            <span class="d-inline-block ms-2 my-title">X</span>
+            <span class="d-inline-block ms-2 my-title notranslate">X</span>
           </span>
           <a href="https://x.com/ajuwelier59583?s=11" target="_blank" class="my-link my-title">
             @ajuwelier59583
           </a>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-5">
+          <i class="fa-solid fa-location-dot fa-xl"></i>
+          <span class="my-title">Berghaselbach 85395, Wolfersdorf</span>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-4 mb-4 mb-md-0">
+          <i class="fa-solid fa-envelope fa-xl"></i>
+          <span class="my-title">a.juwelier.luxury@gmail.com</span>
         </div>
 
 
