@@ -1,13 +1,37 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + Vue</title>
+</head>
+
+<body>
+  <div class="d-flex justify-content-end px-4 py-2 bg-light"
+  style="font-family: 'Courier New', Courier, monospace;font-size: 15px;">
+    <div>
+      <p class="m-0">Language</p>
+      <div id="google_translate_element"></div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+
+  <script type="module" src="/src/main.js"></script>
+  <script type="text/javascript"
+    src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,de,es,it,fr',
+        autoDisplay: false,
+      }, 'google_translate_element');
+    }
+  </script>
+</body>
+
 </html>
