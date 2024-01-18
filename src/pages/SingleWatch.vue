@@ -102,8 +102,8 @@ export default {
                 </div>
             </div>
             <div class="col-md-6 my-title">
-                <h1 class="fw-semibold">{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
-                <h3>Ref. {{ singleWatch.ref }}</h3>
+                <h1 class="fw-semibold notranslate">{{ singleWatch.brand }} {{ singleWatch.model }}</h1>
+                <h3>Reference: {{ singleWatch.ref }}</h3>
                 <h3>
                     {{ singleWatch.price ? (singleWatch.price).toFixed(2).replace('.', ',') : singleWatch.price }} €
                 </h3>
@@ -115,7 +115,8 @@ export default {
                                 <td class="fw-semibold" :class="i == characteristicsArr.length-1 ? 'last-cells' : ''">
                                     {{ labelsArr[i] }}
                                 </td>
-                                <td :class="i == characteristicsArr.length-1 ? 'last-cells' : ''">
+                                <td :class="i == characteristicsArr.length-1 ? 'last-cells' : ''"
+                                v-bind:class="i==0 || i==1 ? 'notranslate' : ''">
                                     {{ charac[0].toUpperCase() + charac.slice(1) }}
                                 </td>
                             </tr>

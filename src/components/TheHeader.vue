@@ -41,7 +41,8 @@ export default {
                 <ul class="navbar-nav">
                     <li v-for="link in navLinks" class="nav-item">
                         <router-link :to="{ name: link.link_name }" class="nav-link my-text"
-                        :class="$route.name == link.link_name ? 'active' : ''">
+                        :class="$route.name == link.link_name ? 'active' : ''"
+                        v-bind:class="link.link == 'Home' ? 'notranslate' : ''">
                             {{ link.link }}
                         </router-link>
                     </li>
