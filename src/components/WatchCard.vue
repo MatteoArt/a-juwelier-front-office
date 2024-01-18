@@ -31,10 +31,10 @@ export default {
         </router-link>
 
         <div class="card-body text-center d-flex flex-column my-title">
-            <h5 class="card-title text-uppercase fw-semibold my-title-watch">{{ watchData.brand }}</h5>
+            <h5 class="card-title text-uppercase fw-semibold my-title-watch notranslate">{{ watchData.brand }}</h5>
             <router-link :to="{ name: 'single-watch', params: { slug: watchData.slug } }"
                 class="text-decoration-none text-uppercase text-body-secondary">
-                <h6 class="card-subtitle mb-2 fw-medium">{{ watchData.model }}</h6>
+                <h6 class="card-subtitle mb-2 fw-medium notranslate">{{ watchData.model }}</h6>
             </router-link>
             <p class="card-text">
             <div class="mb-1">Reference: {{ watchData.ref }}</div>
