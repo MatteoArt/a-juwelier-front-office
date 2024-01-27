@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         fetchData() {
-            axios.get('http://127.0.0.1:8000/api/watches', {
+            axios.get('https://private.ajuwelier.de/api/watches', {
                 params: { searchWatch: this.searchForm }
             })
                 .then((response) => {
