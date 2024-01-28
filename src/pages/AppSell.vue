@@ -128,7 +128,7 @@ export default {
             if (validation) {
                 this.loading = true;
 
-                axios.post('http://127.0.0.1:8000/api/proposals', this.formData,
+                axios.post('https://private.ajuwelier.de/api/proposals', this.formData,
                     {
                         headers: { 'Content-Type': 'multipart/form-data' }
                     }).then((response) => {
