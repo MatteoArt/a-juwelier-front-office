@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         fetchWatch() {
-            axios.get('http://127.0.0.1:8000/api/watches/' + this.$route.params.slug)
+            axios.get('https://private.ajuwelier.de/api/watches/' + this.$route.params.slug)
                 .then((response) => {
                     //se mi viene ritornato un oggetto non nullo
                     if (response.data.result) {
@@ -61,7 +61,7 @@ export default {
             console.log(this.labelsArr)
         },
         getImagePath(img) {
-            return `http://127.0.0.1:8000/storage/${img}`;
+            return `https://private.ajuwelier.de/storage/${img}`;
         }
     },
     mounted() {

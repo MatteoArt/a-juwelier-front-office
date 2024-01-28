@@ -15,7 +15,7 @@ export default {
     methods: {
         getImagePath() {
             const images = JSON.parse(this.watchData.images);
-            return `http://127.0.0.1:8000/storage/${images[0]}`;
+            return `https://private.ajuwelier.de/storage/${images[0]}`;
         }
     }
 }
