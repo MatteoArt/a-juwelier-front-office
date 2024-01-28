@@ -33,7 +33,7 @@ export default {
 
       if (this.errors.nameError == '' && this.errors.emailError == '' && this.errors.messageError == '') {
         this.loading = true;
-        axios.post('http://127.0.0.1:8000/api/contacts', this.userData,
+        axios.post('https://private.ajuwelier.de/api/contacts', this.userData,
           {
             headers: { 'Content-Type': 'application/json' }
           }).then((response) => {
