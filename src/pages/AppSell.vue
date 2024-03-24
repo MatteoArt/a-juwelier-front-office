@@ -43,7 +43,7 @@ export default {
                     options: ['yes', 'no']
                 },
                 {
-                    labelName: 'Production year',
+                    labelName: 'Year',
                     options: null
                 },
                 {
